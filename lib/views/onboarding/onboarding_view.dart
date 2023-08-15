@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/views/login/logjn_signin_view.dart';
 import 'package:news_app/views/onboarding/onboard_model.dart';
 import 'package:news_app/views/onboarding/onboard_pages.dart';
 import 'package:news_app/views/onboarding/widget/dot_indicator.dart';
@@ -82,9 +83,18 @@ class _OnBoardingViewState extends State<OnBoardingView> {
               SizedBox(
                 child: ElevatedButton(
                   onPressed: () {
-                    _pageController.nextPage(
-                        duration: const Duration(milliseconds: 400),
-                        curve: Curves.easeInOut);
+                    if (_pageIndex == demoData.length - 1) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginSingInView(),
+                        ),
+                      );
+                    } else {
+                      _pageController.nextPage(
+                          duration: const Duration(milliseconds: 400),
+                          curve: Curves.easeInOut);
+                    }
                   },
                   child: _pageIndex == demoData.length - 1
                       ? const Text("Get Started")

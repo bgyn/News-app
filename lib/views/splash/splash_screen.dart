@@ -2,28 +2,41 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:news_app/views/login/logjn_signin_view.dart';
+import 'package:news_app/views/main_view.dart';
 import 'package:news_app/views/onboarding/onboarding_view.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends ConsumerStatefulWidget {
+  static const String keyLogin = 'login';
   const SplashScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(
-      const Duration(seconds: 2),
-      () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const OnBoardingView(),
-        ),
-      ),
-    );
+    whereToGo();
+    // Timer(const Duration(seconds: 2), () {
+    //   final isLoggedIn = ref.watch(isLoggedInProvider);
+    //   if (isLoggedIn) {
+    //     Navigator.pushReplacement(
+    //         context,
+    //         MaterialPageRoute(
+    //           builder: (context) => const MainView(),
+    //         ));
+    //   } else {
+    //     Navigator.pushReplacement(
+    //         context,
+    //         MaterialPageRoute(
+    //           builder: (context) => const OnBoardingView(),
+    //         ));
+    //   }
+    // });
   }
 
   @override
@@ -43,5 +56,28 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     );
+  }
+
+  //
+  void whereToGo() async {
+    var sharedPref = await SharedPreferences.getInstance();
+    var isLoggedIn = sharedPref.getBool(SplashScreen.keyLogin);
+    Timer(const Duration(seconds: 2), () {
+      if (isLoggedIn != null) {
+        if (isLoggedIn) {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MainView(),
+              ));
+        } else {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => LoginSingInView()));
+        }
+      } else {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const OnBoardingView()));
+      }
+    });
   }
 }
