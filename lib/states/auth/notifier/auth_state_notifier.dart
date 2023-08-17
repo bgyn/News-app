@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:news_app/states/auth/backend/authenticator.dart';
 import 'package:news_app/states/auth/model/auth_result.dart';
@@ -10,10 +9,10 @@ class AuthStateNotifer extends StateNotifier<AuthState> {
   final _authenticator = const Authenticator();
 
   AuthStateNotifer() : super(const AuthState.unknown()) {
-    if (_authenticator.isAlradyLoggedIn) {
+    if (_authenticator.isAlreadyLoggedIn) {
       state = AuthState(
         result: AuthResult.sucess,
-        isLoading: true,
+        isLoading: false,
         userId: _authenticator.userId,
       );
     }
@@ -29,17 +28,15 @@ class AuthStateNotifer extends StateNotifier<AuthState> {
   Future<void> signInWithEmailPassword(
       {String? email, String? password}) async {
     state = state.copyWithIsLoading(true);
-    final result = _authenticator.signInWithEmailAddress(
+    final result = await _authenticator.signInWithEmailAddress(
       email: email,
       password: password,
     );
-    if (result == AuthResult.sucess) {
-      debugPrint("LoggedIn");
-    }
+    final userId = _authenticator.userId;
     state = AuthState(
-      result: AuthResult.sucess,
+      result: result,
       isLoading: false,
-      userId: _authenticator.userId,
+      userId: userId,
     );
   }
 
@@ -47,17 +44,32 @@ class AuthStateNotifer extends StateNotifier<AuthState> {
   Future<void> signUpWithEmailPassword(
       {String? email, String? password}) async {
     state = state.copyWithIsLoading(true);
-    final result = _authenticator.signUpWithEmailPassword(
+    final result = await _authenticator.signUpWithEmailPassword(
       email: email!,
       password: password!,
     );
-    if (result == AuthResult.sucess) {
-      debugPrint('LoggedIn');
-    }
+    final userId = _authenticator.userId;
     state = AuthState(
-      result: AuthResult.sucess,
+      result: result,
       isLoading: false,
-      userId: _authenticator.userId,
+      userId: userId,
+    );
+  }
+
+  //reset passoword
+  Future<void> resetPassword({String? email}) async {
+    await _authenticator.resetPassword(email);
+  }
+
+  //signin with google
+  Future<void> signInWithGoogle() async {
+    state = state.copyWithIsLoading(true);
+    final result = await _authenticator.signInWithGoogle();
+    final userId = _authenticator.userId;
+    state = AuthState(
+      result: result,
+      isLoading: false,
+      userId: userId,
     );
   }
 }

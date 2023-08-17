@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:news_app/states/auth/model/auth_result.dart';
+import 'package:news_app/states/auth/provider/is_logged_In_provider.dart';
+import 'package:news_app/states/shared_preference/shared_preference.dart';
+import 'package:news_app/views/component/remember_me.dart';
+import 'package:news_app/views/component/text_field.dart';
 import 'package:news_app/views/component/facebook_button.dart';
 import 'package:news_app/views/component/google_button.dart';
+import 'package:news_app/views/component/password_text_field.dart';
 import 'package:news_app/views/constant/string.dart';
 import 'package:news_app/views/login/logjn_signin_view.dart';
-import 'package:news_app/views/login/toggle_provider.dart';
 import 'package:news_app/views/main_view.dart';
-import 'package:news_app/views/splash/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../states/auth/provider/auth_state_provider.dart';
@@ -46,43 +48,16 @@ class LoginSingUpView extends ConsumerWidget {
               const SizedBox(
                 height: 30,
               ),
-              TextField(
-                controller: emailController,
-                decoration: const InputDecoration(
-                  label: Text('Useraname'),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20),
-                    ),
-                  ),
-                ),
+              EmailTextField(
+                emailController: emailController,
+                text: 'Username*',
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
-              Consumer(
-                builder: (_, ref, child) {
-                  final isObscure = ref.watch(toggleProvider);
-                  return TextField(
-                    controller: passwordController,
-                    obscureText: isObscure,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      suffixIcon: IconButton(
-                          onPressed: () {
-                            ref.watch(toggleProvider.notifier).obscureText();
-                          },
-                          icon: isObscure
-                              ? const Icon(Icons.remove_red_eye)
-                              : const Icon(Icons.remove_red_eye_outlined)),
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20),
-                        ),
-                      ),
-                    ),
-                  );
-                },
+              PasswordTextField(
+                passwordController: passwordController,
+                text: 'Password*',
               ),
               const SizedBox(
                 height: 20,
@@ -90,15 +65,7 @@ class LoginSingUpView extends ConsumerWidget {
               const Row(
                 children: [
                   Expanded(
-                    child: Row(
-                      children: [
-                        Icon(Icons.check_box_outline_blank),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text('Remember me')
-                      ],
-                    ),
+                    child: RememberMe(),
                   ),
                 ],
               ),
@@ -111,19 +78,20 @@ class LoginSingUpView extends ConsumerWidget {
                     backgroundColor: Colors.blue,
                   ),
                   onPressed: () async {
-                    final result = ref.watch(authStateProvider).result;
+                    final result = ref.watch(isLoggedInProvider);
                     ref
-                        .watch(authStateProvider.notifier)
+                        .read(authStateProvider.notifier)
                         .signUpWithEmailPassword(
                             email: emailController.text,
                             password: passwordController.text);
-                    if (result == AuthResult.sucess) {
-                      var sharedPref = await SharedPreferences.getInstance();
-                      sharedPref.setBool(SplashScreen.keyLogin, true);
+                    if (result) {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const MainView()));
+                      final sharedPreferences =
+                          await SharedPreferences.getInstance();
+                      sharedPreferences.setBool(keylogin, true);
                     }
                   },
                   child: const Text(
@@ -148,7 +116,18 @@ class LoginSingUpView extends ConsumerWidget {
                 children: [
                   Expanded(
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        final result = ref.watch(isLoggedInProvider);
+                        ref.read(authStateProvider.notifier).signInWithGoogle();
+                        if (result) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MainView(),
+                            ),
+                          );
+                        }
+                      },
                       child: const GoogleButton(),
                     ),
                   ),

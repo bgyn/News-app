@@ -15,4 +15,7 @@ class String {
   static const orContinueWith = "or continue with";
   static const signUpToGetStarted = 'Sign Up to get started';
   static const alreadyHaveAnAccount = "Already have an account?";
+  static const forgotPassword = "Forgot\nPassword?";
+  static const dontWorry =
+      "Dont't worry it happens. Please enter the address associated with your account";
 }
