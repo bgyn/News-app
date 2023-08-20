@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:news_app/states/shared_preference/shared_preference.dart';
 import 'package:news_app/views/countires/counties_view.dart';
-import 'package:news_app/views/login/logjn_signin_view.dart';
 import 'package:news_app/views/loign_or_home/signin_or_home.dart';
 import 'package:news_app/views/onboarding/onboarding_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
