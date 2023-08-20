@@ -20,20 +20,23 @@ class PasswordTextField extends ConsumerWidget {
         Consumer(
           builder: (_, ref, child) {
             final isObscure = ref.watch(obscureTextProvider);
-            return TextField(
-              controller: passwordController,
-              obscureText: isObscure,
-              decoration: InputDecoration(
-                suffixIcon: IconButton(
-                    onPressed: () {
-                      ref.watch(obscureTextProvider.notifier).obscureText();
-                    },
-                    icon: isObscure
-                        ? const Icon(Icons.remove_red_eye)
-                        : const Icon(Icons.remove_red_eye_outlined)),
-                border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
+            return SizedBox(
+              height: 50,
+              child: TextField(
+                controller: passwordController,
+                obscureText: isObscure,
+                decoration: InputDecoration(
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        ref.watch(obscureTextProvider.notifier).obscureText();
+                      },
+                      icon: isObscure
+                          ? const Icon(Icons.remove_red_eye)
+                          : const Icon(Icons.remove_red_eye_outlined)),
+                  border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10),
+                    ),
                   ),
                 ),
               ),

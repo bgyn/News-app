@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/views/login/login_signup_view.dart';
+import 'package:news_app/views/loign_or_home/signup_or_home.dart';
 import 'package:news_app/views/onboarding/onboard_model.dart';
 import 'package:news_app/views/onboarding/onboard_pages.dart';
 import 'package:news_app/views/onboarding/widget/dot_indicator.dart';
@@ -87,7 +87,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => LoginSingUpView(),
+                          builder: (context) => const SingUPOrHome(),
                         ),
                       );
                     } else {

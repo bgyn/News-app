@@ -34,8 +34,8 @@ class ForgotPassword extends ConsumerWidget {
             const SizedBox(
               height: 10,
             ),
-            EmailTextField(
-              emailController: emailController,
+            TextFieldWidget(
+              textController: emailController,
               text: 'Username',
             ),
           ],

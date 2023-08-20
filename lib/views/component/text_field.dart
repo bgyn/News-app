@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class EmailTextField extends StatelessWidget {
+class TextFieldWidget extends StatelessWidget {
   final String text;
-  final TextEditingController emailController;
-  const EmailTextField(
-      {super.key, required this.emailController, required this.text});
+  final TextEditingController textController;
+  const TextFieldWidget(
+      {super.key, required this.textController, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +15,15 @@ class EmailTextField extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-        TextField(
-          controller: emailController,
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(10),
+        SizedBox(
+          height: 50,
+          child: TextField(
+            controller: textController,
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(10),
+                ),
               ),
             ),
           ),

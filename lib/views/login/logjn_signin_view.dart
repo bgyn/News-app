@@ -10,11 +10,8 @@ import 'package:news_app/views/component/password_text_field.dart';
 import 'package:news_app/views/component/rich_text.dart';
 import 'package:news_app/views/constant/string.dart';
 import 'package:news_app/views/login/forgot_password.dart';
-import 'package:news_app/views/login/login_signup_view.dart';
+import 'package:news_app/views/loign_or_home/signup_or_home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../states/auth/provider/is_logged_In_provider.dart';
-import '../main_view.dart';
 
 class LoginSingInView extends ConsumerWidget {
   final emailController = TextEditingController();
@@ -43,8 +40,8 @@ class LoginSingInView extends ConsumerWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                EmailTextField(
-                  emailController: emailController,
+                TextFieldWidget(
+                  textController: emailController,
                   text: 'Username*',
                 ),
                 const SizedBox(
@@ -83,21 +80,15 @@ class LoginSingInView extends ConsumerWidget {
                       backgroundColor: Colors.blue,
                     ),
                     onPressed: () async {
-                      final result = ref.watch(isLoggedInProvider);
                       ref
                           .read(authStateProvider.notifier)
                           .signInWithEmailPassword(
                               email: emailController.text,
                               password: passwordController.text);
-                      if (result) {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const MainView()));
-                        final sharedPreferences =
-                            await SharedPreferences.getInstance();
-                        sharedPreferences.setBool(keylogin, true);
-                      }
+
+                      final sharedPreferences =
+                          await SharedPreferences.getInstance();
+                      sharedPreferences.setBool(keylogin, true);
                     },
                     child: const Text(
                       String.login,
@@ -121,20 +112,10 @@ class LoginSingInView extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: TextButton(
-                        onPressed: () async {
+                        onPressed: () {
                           ref
                               .watch(authStateProvider.notifier)
                               .signInWithGoogle();
-                          final result = ref.read(isLoggedInProvider);
-                          debugPrint('Result: $result');
-                          if (result) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const MainView(),
-                              ),
-                            );
-                          }
                         },
                         child: const GoogleButton(),
                       ),
@@ -152,11 +133,11 @@ class LoginSingInView extends ConsumerWidget {
                   children: [
                     const Text(String.dontHaveAnAccount),
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LoginSingUpView()));
+                                builder: (context) => const SingUPOrHome()));
                       },
                       child: const Text(String.signup),
                     )
