@@ -41,6 +41,9 @@ class _CountriesViewsState extends State<CountriesViews> {
                 suffixIcon: const Icon(Icons.search),
               ),
             ),
+            const SizedBox(
+              height: 10,
+            ),
             FutureBuilder(
               future: getCountries(),
               builder: (context, AsyncSnapshot<dynamic> snapshot) {
@@ -48,7 +51,7 @@ class _CountriesViewsState extends State<CountriesViews> {
                   if (snapshot.hasData) {
                     snapshot.data!.forEach((k, _) => countries.add(k));
                     return Expanded(
-                      child: ListView.builder(
+                      child: ListView.separated(
                         scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount: countries.length,
@@ -56,18 +59,24 @@ class _CountriesViewsState extends State<CountriesViews> {
                           var code = countries[index];
                           return Column(
                             children: [
-                              ListTile(
-                                title: Text(
-                                    "${snapshot.data![code.toString()]['name']}"),
-                                leading: SizedBox(
-                                  height: 30,
-                                  width: 30,
-                                  child: Image.network(
-                                      "${snapshot.data![code.toString()]['flag']['small']}"),
+                              GestureDetector(
+                                onTap: () {},
+                                child: ListTile(
+                                  title: Text(
+                                      "${snapshot.data![code.toString()]['name']}"),
+                                  leading: SizedBox(
+                                    height: 30,
+                                    width: 30,
+                                    child: Image.network(
+                                        "${snapshot.data![code.toString()]['flag']['small']}"),
+                                  ),
                                 ),
                               ),
                             ],
                           );
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return const Divider();
                         },
                       ),
                     );

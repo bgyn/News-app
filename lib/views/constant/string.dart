@@ -18,4 +18,6 @@ class String {
   static const forgotPassword = "Forgot\nPassword?";
   static const dontWorry =
       "Dont't worry it happens. Please enter the address associated with your account";
+  static const trending = "Trending";
+  static const seeAll = "See all";
 }
