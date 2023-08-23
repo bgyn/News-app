@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/states/service/countries_service.dart';
 import 'package:news_app/views/component/button.dart';
+import 'package:news_app/views/countires/servide/countries_service.dart';
 import 'package:news_app/views/profile/user_profile.dart';
 
 class CountriesViews extends StatefulWidget {
