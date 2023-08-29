@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:news_app/states/auth/provider/is_logged_in_provider.dart';
+import 'package:news_app/states/auth/provider/is_logged_In_provider.dart';
 import 'package:news_app/views/main/pages/homa_page.dart';
 import 'package:news_app/views/login/logjn_signin_view.dart';
 import 'package:news_app/views/loign_or_home/local_is_login_storage.dart';
