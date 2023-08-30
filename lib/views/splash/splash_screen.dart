@@ -3,11 +3,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:news_app/states/shared_preference/shared_preference.dart';
-import 'package:news_app/views/countires/counties_view.dart';
 import 'package:news_app/views/loign_or_home/signin_or_home.dart';
 import 'package:news_app/views/main/pages/main_page.dart';
 import 'package:news_app/views/onboarding/onboarding_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+final homeRoute = MaterialPageRoute(builder: (context) => const MainPage());
+final signInRoute =
+    MaterialPageRoute(builder: (context) => const SingInOrHome());
+final onBoardingRoute =
+    MaterialPageRoute(builder: (context) => const OnBoardingView());
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -44,38 +49,17 @@ class _SplashScreenState extends State<SplashScreen> {
   void whereToGo() async {
     final sharedPreferences = await SharedPreferences.getInstance();
     var isLoggedIn = sharedPreferences.getBool(keylogin);
-    var isNewUser = sharedPreferences.getBool(newUser);
     Timer(
       const Duration(seconds: 2),
       () {
         if (isLoggedIn != null) {
-          //user is logged in
           if (isLoggedIn) {
-            if (isNewUser == true) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const CountriesViews(),
-                ),
-              );
-            } else {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const MainPage(),
-                ),
-              );
-            }
-
-            //if user has logout
+            Navigator.pushReplacement(context, homeRoute);
           } else {
-            Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => const SingInOrHome()));
+            Navigator.pushReplacement(context, signInRoute);
           }
-          //user is new
         } else {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const OnBoardingView()));
+          Navigator.pushReplacement(context, onBoardingRoute);
         }
       },
     );

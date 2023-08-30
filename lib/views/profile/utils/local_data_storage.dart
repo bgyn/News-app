@@ -17,4 +17,8 @@ class LocalDataStorage {
     await sharedPreferences.setBool(newUser, data);
   }
 
+  Future<bool> getNewUser() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    return sharedPreferences.getBool(newUser) ?? true;
+  }
 }

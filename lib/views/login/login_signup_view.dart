@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:news_app/states/shared_preference/shared_preference.dart';
 import 'package:news_app/views/component/remember_me.dart';
 import 'package:news_app/views/component/text_field.dart';
 import 'package:news_app/views/component/facebook_button.dart';
@@ -7,6 +8,7 @@ import 'package:news_app/views/component/google_button.dart';
 import 'package:news_app/views/component/password_text_field.dart';
 import 'package:news_app/views/constant/string.dart';
 import 'package:news_app/views/loign_or_home/signin_or_home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../states/auth/provider/auth_state_provider.dart';
 
@@ -106,6 +108,9 @@ class LoginSingUpView extends ConsumerWidget {
                           ref
                               .read(authStateProvider.notifier)
                               .signInWithGoogle();
+                          final sharedPreferences =
+                              await SharedPreferences.getInstance();
+                          sharedPreferences.setBool(keylogin, true);
                         },
                         child: const GoogleButton(),
                       ),

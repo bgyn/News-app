@@ -112,10 +112,13 @@ class LoginSingInView extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: TextButton(
-                        onPressed: () {
+                        onPressed: () async {
                           ref
                               .watch(authStateProvider.notifier)
                               .signInWithGoogle();
+                          final sharedPreferences =
+                              await SharedPreferences.getInstance();
+                          sharedPreferences.setBool(keylogin, true);
                         },
                         child: const GoogleButton(),
                       ),

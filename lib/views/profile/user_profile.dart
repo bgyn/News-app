@@ -6,7 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:news_app/views/component/button.dart';
 import 'package:news_app/views/component/snack_bar.dart';
 import 'package:news_app/views/component/text_field.dart';
-import 'package:news_app/views/main/pages/homa_page.dart';
+import 'package:news_app/views/main/pages/main_page.dart';
 import 'package:news_app/views/profile/utils/local_data_storage.dart';
 
 class UserProfile extends StatefulWidget {
@@ -158,9 +158,8 @@ class _UserProfileState extends State<UserProfile> {
                     };
                     final encodedData = jsonEncode(data);
                     localDataStorage.storeInfomation(encodedData);
-                    localDataStorage.isNewUser(false);
-                    final route =
-                        MaterialPageRoute(builder: (context) => HomePage());
+                    final route = MaterialPageRoute(
+                        builder: (context) => const MainPage());
                     Navigator.pushAndRemoveUntil(
                         context, route, (route) => false);
                   }
