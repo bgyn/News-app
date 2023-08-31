@@ -1,7 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ObscureTextNotifier extends StateNotifier<bool> {
-  ObscureTextNotifier([bool isObscure = true, bool check = true])
+  ObscureTextNotifier([bool isObscure = true])
       : super(
           isObscure,
         );

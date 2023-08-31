@@ -26,22 +26,7 @@ class _MainPageState extends ConsumerState<MainPage> {
     var navIndex = ref.watch(navProvider);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-          title: SvgPicture.asset(
-            'assets/images/Vector.svg',
-            height: 30,
-            width: 100,
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.notifications_none),
-            )
-          ]),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-        child: _screens[navIndex.index],
-      ),
+      body: _screens[navIndex.index],
       bottomNavigationBar: NavigationBar(
         backgroundColor: Colors.transparent,
         indicatorColor: Colors.blue,

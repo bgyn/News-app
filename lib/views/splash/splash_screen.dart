@@ -8,12 +8,6 @@ import 'package:news_app/views/main/pages/main_page.dart';
 import 'package:news_app/views/onboarding/onboarding_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final homeRoute = MaterialPageRoute(builder: (context) => const MainPage());
-final signInRoute =
-    MaterialPageRoute(builder: (context) => const SingInOrHome());
-final onBoardingRoute =
-    MaterialPageRoute(builder: (context) => const OnBoardingView());
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -22,6 +16,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final homeRoute = MaterialPageRoute(builder: (context) => const MainPage());
+  final signInRoute =
+      MaterialPageRoute(builder: (context) => const SingInOrHome());
+  final onBoardingRoute =
+      MaterialPageRoute(builder: (context) => const OnBoardingView());
   @override
   void initState() {
     super.initState();
