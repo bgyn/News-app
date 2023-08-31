@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:news_app/views/profile/user_profile.dart';
 import 'package:news_app/views/settings/edit_profile.dart';
 import 'package:news_app/views/settings/settings.dart';
 import 'package:news_app/views/profile/utils/local_data_storage.dart';

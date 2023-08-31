@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:news_app/views/component/button.dart';
 import 'package:news_app/views/component/snack_bar.dart';
 import 'package:news_app/views/component/text_field.dart';
 import 'package:news_app/views/main/pages/main_page.dart';
