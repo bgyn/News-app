@@ -6,9 +6,9 @@ import 'package:news_app/model/news_headline_model.dart';
 const apiKey = "53636185a44a45139bc4bcf1916fdb97";
 
 class NewsHeadlineRepository {
+  Future<NewsHeadlineModel> fetchNewsHeadline(String source) async {
   String url =
-      "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=$apiKey";
-  Future<NewsHeadlineModel> fetchNewsHeadline() async {
+      "https://newsapi.org/v2/top-headlines?sources=$source&apiKey=$apiKey";
     try {
       http.Response response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {

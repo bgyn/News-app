@@ -4,13 +4,13 @@ import 'package:news_app/states/news_catagory/news_catagory_states.dart';
 
 List newsCategory = [
   'All',
-  'Sports',
-  'Policts',
+  'General',
+  'Entertainment',
   'Business',
   'Health',
   'Travel',
   'Science',
-  'Tech',
+  'Techonolgy',
 ];
 
 class NewsCategory extends ConsumerWidget {
