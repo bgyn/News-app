@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   FilterMenu? selectedMenu;
-  String? name;
+  String source = 'bbc-news';
   NewsHeadlineViewModel newsHeadlineViewModel = NewsHeadlineViewModel();
   @override
   Widget build(BuildContext context) {
@@ -31,15 +31,15 @@ class _HomePageState extends State<HomePage> {
             initialValue: selectedMenu,
             onSelected: (FilterMenu item) {
               if (FilterMenu.bbcNews.name == item.name) {
-                name = 'bbc-news';
+                source = 'bbc-news';
               } else if (FilterMenu.abcNews.name == item.name) {
-                name = "abc-news";
+                source = "abc-news";
               } else if (FilterMenu.foxNews.name == item.name) {
-                name = 'fox-news';
+                source = 'fox-news';
               } else if (FilterMenu.alJazeeraEnglish.name == item.name) {
-                name = 'al-jazeera-english';
+                source = 'al-jazeera-english';
               } else {
-                name = item.name;
+                source = item.name;
               }
 
               setState(() {
@@ -88,9 +88,8 @@ class _HomePageState extends State<HomePage> {
               height: 5,
             ),
             NewsHeadline(
-              newsSource: name!,
+              newsSource: source,
             ),
-            // const NewsCategory(),
           ],
         ),
       ),

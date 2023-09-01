@@ -8,7 +8,7 @@ import 'package:news_app/view_model/news_headline_view_model.dart';
 class NewsHeadline extends ConsumerWidget {
   final String newsSource;
   final NewsHeadlineViewModel newsHeadlineViewModel = NewsHeadlineViewModel();
-  NewsHeadline({super.key, this.newsSource = 'bbc-news'});
+  NewsHeadline({super.key, required this.newsSource});
 
   final format = DateFormat("MMMM dd,yyyy");
   @override
