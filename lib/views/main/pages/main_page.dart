@@ -27,7 +27,6 @@ class _MainPageState extends ConsumerState<MainPage> {
   Widget build(BuildContext context) {
     var navIndex = ref.watch(navProvider);
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: _screens[navIndex.index],
       bottomNavigationBar: NavigationBar(
         backgroundColor: Colors.transparent,

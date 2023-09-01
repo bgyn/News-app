@@ -29,20 +29,6 @@ class _ProfilePageState extends State<ProfilePage> {
     getInformation();
   }
 
-  Future<void> getInformation() async {
-    final result = await localDataStorage.getInformation();
-    if (result != "") {
-      Map<String, dynamic> decodedData = jsonDecode(result);
-      fullName = decodedData['fullname'];
-      file = XFile(decodedData['imagePath']);
-      bio = decodedData['bio'];
-      userName = decodedData['userName'];
-      email = decodedData['email'];
-      phone = decodedData['phone'];
-      setState(() {});
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,5 +121,19 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ],
         ));
+  }
+
+  Future<void> getInformation() async {
+    final result = await localDataStorage.getInformation();
+    if (result != "") {
+      Map<String, dynamic> decodedData = jsonDecode(result);
+      fullName = decodedData['fullname'];
+      file = XFile(decodedData['imagePath']);
+      bio = decodedData['bio'];
+      userName = decodedData['userName'];
+      email = decodedData['email'];
+      phone = decodedData['phone'];
+      setState(() {});
+    }
   }
 }

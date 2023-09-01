@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:news_app/view_model/news_headline_view_model.dart';
+import 'package:news_app/views/news_channel/news_category.dart';
+import 'package:news_app/views/news_headline/news_headline.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,6 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  NewsHeadlineViewModel newsHeadlineViewModel = NewsHeadlineViewModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +28,14 @@ class _HomePageState extends State<HomePage> {
               icon: const Icon(Icons.notifications_none),
             )
           ]),
-      body: Center(
-        child: Text("Home Page"),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: ListView(
+          children: [
+            NewsHeadline(),
+            const NewsCategory(),
+          ],
+        ),
       ),
     );
   }
