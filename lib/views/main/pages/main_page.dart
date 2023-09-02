@@ -20,7 +20,6 @@ class _MainPageState extends ConsumerState<MainPage> {
   static final List<Widget> _screens = <Widget>[
     const HomePage(),
     const ExplorePage(),
-    const BookmarkPage(),
     const ProfilePage(),
   ];
   @override
@@ -43,10 +42,6 @@ class _MainPageState extends ConsumerState<MainPage> {
           NavigationDestination(
             icon: Icon(Icons.explore_outlined),
             label: 'Explore',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.bookmark_outline_outlined),
-            label: 'Bookmark',
           ),
           NavigationDestination(
             icon: Icon(Icons.person_2_outlined),

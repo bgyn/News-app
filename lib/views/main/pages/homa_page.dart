@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:news_app/view_model/news_headline_view_model.dart';
+import 'package:news_app/view_model/news_view_model.dart';
 import 'package:news_app/views/news_headline/news_headline.dart';
 
 enum FilterMenu { bbcNews, abcNews, cnn, alJazeeraEnglish, foxNews, alJzeera }
@@ -87,8 +87,9 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 5,
             ),
-            NewsHeadline(
-              newsSource: source,
+            NewsHeadline(newsSource: source),
+            const SizedBox(
+              height: 5,
             ),
           ],
         ),

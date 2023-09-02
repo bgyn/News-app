@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:news_app/view_model/news_headline_view_model.dart';
+import 'package:news_app/view_model/news_view_model.dart';
 
 class NewsHeadline extends ConsumerWidget {
   final String newsSource;
@@ -66,7 +66,7 @@ class NewsHeadline extends ConsumerWidget {
                           child: Container(
                             padding: const EdgeInsets.all(15),
                             alignment: Alignment.bottomCenter,
-                            height: height * 0.2,
+                            height: height * 0.15,
                             decoration: const BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.all(
@@ -83,7 +83,7 @@ class NewsHeadline extends ConsumerWidget {
                                     snapshot.data!.articles![index].title
                                         .toString(),
                                     maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
+                                  overflow: TextOverflow.ellipsis,
                                     style: GoogleFonts.poppins(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w700,
