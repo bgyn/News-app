@@ -1,10 +1,7 @@
-// ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:news_app/states/nav_states/nav_state_notifier.dart';
-import 'package:news_app/views/main/pages/bookmark_page.dart';
 import 'package:news_app/views/main/pages/explore_page.dart';
 import 'package:news_app/views/main/pages/homa_page.dart';
 import 'package:news_app/views/main/pages/profile_page.dart';
