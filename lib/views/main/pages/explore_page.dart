@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:news_app/view_model/news_view_model.dart';
 import 'package:news_app/views/news_channel/news_category.dart';
 import 'package:news_app/views/news_channel/news_category_list.dart';
 
 class ExplorePage extends ConsumerWidget {
-  const ExplorePage({super.key});
+  final NewsHeadlineViewModel newsHeadlineViewModel = NewsHeadlineViewModel();
+  ExplorePage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
@@ -19,6 +21,7 @@ class ExplorePage extends ConsumerWidget {
         Expanded(
           child: NewsCategory(),
         ),
+        
       ],
     );
   }

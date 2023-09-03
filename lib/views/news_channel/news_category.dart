@@ -60,7 +60,7 @@ class NewsCategory extends StatelessWidget {
                           Expanded(
                             child: SizedBox(
                               height: height * 0.18,
-                              child: Padding(
+                            child: Padding(
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,

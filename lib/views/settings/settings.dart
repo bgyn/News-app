@@ -7,7 +7,10 @@ import 'package:news_app/views/settings/theme_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsView extends ConsumerWidget {
-  const SettingsView({super.key});
+  final route = MaterialPageRoute(
+    builder: (context) => const SingInOrHome(),
+  );
+  SettingsView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -61,12 +64,7 @@ class SettingsView extends ConsumerWidget {
           GestureDetector(
             onTap: () async {
               ref.watch(authStateProvider.notifier).logOut();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SingInOrHome(),
-                ),
-              );
+              Navigator.pushAndRemoveUntil(context, route, (route) => false);
               final sharedPreferences = await SharedPreferences.getInstance();
               sharedPreferences.setBool(keylogin, false);
             },

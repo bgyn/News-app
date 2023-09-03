@@ -38,10 +38,8 @@ class _ProfilePageState extends State<ProfilePage> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SettingsView()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SettingsView()));
               },
               icon: const Icon(Icons.settings),
             )

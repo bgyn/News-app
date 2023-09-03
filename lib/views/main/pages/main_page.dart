@@ -16,7 +16,7 @@ class MainPage extends ConsumerStatefulWidget {
 class _MainPageState extends ConsumerState<MainPage> {
   static final List<Widget> _screens = <Widget>[
     const HomePage(),
-    const ExplorePage(),
+    ExplorePage(),
     const ProfilePage(),
   ];
   @override
