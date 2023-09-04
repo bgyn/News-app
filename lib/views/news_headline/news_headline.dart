@@ -34,6 +34,7 @@ class NewsHeadline extends ConsumerWidget {
                 final title = snapshot.data!.articles![index].title;
                 final urlToImg = snapshot.data!.articles![index].urlToImage;
                 final content = snapshot.data!.articles![index].content;
+                final newsUrl = snapshot.data!.articles![index].url;
                 return InkWell(
                   onTap: () {
                     Navigator.push(
@@ -45,6 +46,7 @@ class NewsHeadline extends ConsumerWidget {
                           urlToImg: urlToImg!,
                           content: content!,
                           publishedAt: dateTime,
+                          newsUrl: newsUrl!,
                         ),
                       ),
                     );

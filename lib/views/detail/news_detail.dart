@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:news_app/views/countires/service/countries_service.dart';
+import 'package:share_plus/share_plus.dart';
 
 class NewsDetail extends ConsumerWidget {
   final String name;
@@ -10,6 +12,7 @@ class NewsDetail extends ConsumerWidget {
   final String title;
   final String content;
   final DateTime publishedAt;
+  final String newsUrl;
 
   const NewsDetail({
     super.key,
@@ -18,6 +21,7 @@ class NewsDetail extends ConsumerWidget {
     required this.urlToImg,
     required this.content,
     required this.publishedAt,
+    required this.newsUrl,
   });
 
   @override
@@ -29,7 +33,9 @@ class NewsDetail extends ConsumerWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Share.share(url);
+            },
             icon: const Icon(
               (Icons.share),
             ),

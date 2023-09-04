@@ -27,13 +27,13 @@ class NewsCategory extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: snapshot.data!.articles!.length,
                 itemBuilder: (context, index) {
+                  DateTime dateTime = DateTime.parse(
+                      snapshot.data!.articles![index].publishedAt.toString());
                   final name = snapshot.data!.articles![index].source!.name;
                   final title = snapshot.data!.articles![index].title;
                   final urlToImg = snapshot.data!.articles![index].urlToImage;
                   final content = snapshot.data!.articles![index].content;
-                  DateTime dateTime = DateTime.parse(
-                      snapshot.data!.articles![index].publishedAt.toString());
-
+                  final newsUrl = snapshot.data!.articles![index].url;
                   return Padding(
                     padding: const EdgeInsets.only(
                       bottom: 10,
@@ -51,6 +51,7 @@ class NewsCategory extends StatelessWidget {
                               urlToImg: urlToImg!,
                               content: content!,
                               publishedAt: dateTime,
+                              newsUrl: newsUrl!,
                             ),
                           ),
                         );
