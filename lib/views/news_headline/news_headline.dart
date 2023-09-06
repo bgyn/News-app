@@ -5,17 +5,18 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:news_app/view_model/news_view_model.dart';
 import 'package:news_app/views/detail/news_detail.dart';
+import 'package:news_app/views/main/pages/homa_page.dart';
 
 class NewsHeadline extends ConsumerWidget {
-  final String newsSource;
+  final String? newsSource;
   final NewsHeadlineViewModel newsHeadlineViewModel = NewsHeadlineViewModel();
-  NewsHeadline({super.key, required this.newsSource});
-
+  NewsHeadline({super.key, this.newsSource});
   final format = DateFormat("MMMM dd,yyyy");
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final width = MediaQuery.of(context).size.width * 1;
     final height = MediaQuery.of(context).size.height * 1;
+    final newsSource = ref.watch(filterMenu);
     return SizedBox(
       height: height * 0.5,
       child: FutureBuilder(

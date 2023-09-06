@@ -126,11 +126,12 @@ class _ProfilePageState extends State<ProfilePage> {
     if (result != "") {
       Map<String, dynamic> decodedData = jsonDecode(result);
       fullName = decodedData['fullname'];
-      file = XFile(decodedData['imagePath']);
       bio = decodedData['bio'];
       userName = decodedData['userName'];
       email = decodedData['email'];
-      phone = decodedData['phone'];
+    phone = decodedData['phone'];
+      file = XFile(decodedData['imagePath']);
+      debugPrint(file.toString());
       setState(() {});
     }
   }
