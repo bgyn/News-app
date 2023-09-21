@@ -11,9 +11,10 @@ class CountriesViews extends StatefulWidget {
 }
 
 class _CountriesViewsState extends State<CountriesViews> {
+  Color tileColor = Colors.transparent;
   final List countries = [];
 
-  final _searchController = TextEditingController();
+  // final _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,20 +28,20 @@ class _CountriesViewsState extends State<CountriesViews> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey.shade800,
-                label: const Text('Search'),
-                border: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
-                  ),
-                ),
-                suffixIcon: const Icon(Icons.search),
-              ),
-            ),
+            // TextField(
+            //   controller: _searchController,
+            //   decoration: InputDecoration(
+            //     filled: true,
+            //     fillColor: Colors.grey.shade800,
+            //     label: const Text('Search'),
+            //     border: const OutlineInputBorder(
+            //       borderRadius: BorderRadius.all(
+            //         Radius.circular(20),
+            //       ),
+            //     ),
+            //     suffixIcon: const Icon(Icons.search),
+            //   ),
+            // ),
             const SizedBox(
               height: 10,
             ),
@@ -57,22 +58,20 @@ class _CountriesViewsState extends State<CountriesViews> {
                         itemCount: countries.length,
                         itemBuilder: (BuildContext context, int index) {
                           var code = countries[index];
-                          return Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {},
-                                child: ListTile(
-                                  title: Text(
-                                      "${snapshot.data![code.toString()]['name']}"),
-                                  leading: SizedBox(
-                                    height: 30,
-                                    width: 30,
-                                    child: Image.network(
-                                        "${snapshot.data![code.toString()]['flag']['small']}"),
-                                  ),
-                                ),
-                              ),
-                            ],
+                          return ListTile(
+                            tileColor: tileColor,
+                            title: Text(
+                                "${snapshot.data![code.toString()]['name']}"),
+                            leading: SizedBox(
+                              height: 30,
+                              width: 30,
+                              child: Image.network(
+                                  "${snapshot.data![code.toString()]['flag']['small']}"),
+                            ),
+                            onTap: () {
+                              tileColor = Colors.blue;
+                              setState(() {});
+                            },
                           );
                         },
                         separatorBuilder: (BuildContext context, int index) {
