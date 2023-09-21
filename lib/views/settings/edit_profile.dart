@@ -18,13 +18,13 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
+  final LocalDataStorage localDataStorage = LocalDataStorage();
   final _usernameController = TextEditingController();
   final _fullNameController = TextEditingController();
   final _emailAddressController = TextEditingController();
   final _phoneNumberController = TextEditingController();
   final _bioController = TextEditingController();
   final _websiteController = TextEditingController();
-  final LocalDataStorage localDataStorage = LocalDataStorage();
   final ImagePicker _imagePicker = ImagePicker();
   XFile? file;
 
@@ -43,13 +43,13 @@ class _EditProfileState extends State<EditProfile> {
     final result = await localDataStorage.getInformation();
     if (result != "") {
       Map<String, dynamic> decodedData = jsonDecode(result);
+      file = XFile(decodedData['imagePath']);
       _usernameController.text = decodedData['username'];
       _fullNameController.text = decodedData['fullname'];
       _emailAddressController.text = decodedData['email'];
       _phoneNumberController.text = decodedData['phone'];
       _bioController.text = decodedData['bio'];
       _websiteController.text = decodedData['website'];
-      file = XFile(decodedData['imagePath']);
       setState(() {});
     }
   }

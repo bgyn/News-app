@@ -129,9 +129,8 @@ class _ProfilePageState extends State<ProfilePage> {
       bio = decodedData['bio'];
       userName = decodedData['userName'];
       email = decodedData['email'];
-    phone = decodedData['phone'];
+      phone = decodedData['phone'];
       file = XFile(decodedData['imagePath']);
-      debugPrint(file.toString());
       setState(() {});
     }
   }

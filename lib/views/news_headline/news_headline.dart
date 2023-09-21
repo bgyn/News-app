@@ -18,7 +18,7 @@ class NewsHeadline extends ConsumerWidget {
     final height = MediaQuery.of(context).size.height * 1;
     final newsSource = ref.watch(filterMenu);
     return SizedBox(
-      height: height * 0.5,
+      height: height * 0.4,
       child: FutureBuilder(
         future: newsHeadlineViewModel.fetchNewsHeadline(newsSource),
         builder: (context, snapshot) {
@@ -69,7 +69,7 @@ class NewsHeadline extends ConsumerWidget {
                                   .toString(),
                               fit: BoxFit.cover,
                               width: width,
-                              height: height * 0.5,
+                              height: height * 0.4,
                               placeholder: (context, url) => const SizedBox(
                                 child:
                                     Center(child: CircularProgressIndicator()),
@@ -91,7 +91,7 @@ class NewsHeadline extends ConsumerWidget {
                             child: Container(
                               padding: const EdgeInsets.all(15),
                               alignment: Alignment.bottomCenter,
-                              height: height * 0.15,
+                              height: height * 0.12,
                               decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.all(
