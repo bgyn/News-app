@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:news_app/states/nav_states/nav_state_notifier.dart';
@@ -23,7 +22,10 @@ class _MainPageState extends ConsumerState<MainPage> {
   Widget build(BuildContext context) {
     var navIndex = ref.watch(navProvider);
     return Scaffold(
-      body: _screens[navIndex.index],
+      body: IndexedStack(
+        index: navIndex.index,
+        children: _screens,
+      ),
       bottomNavigationBar: NavigationBar(
         backgroundColor: Colors.transparent,
         indicatorColor: Colors.blue,
