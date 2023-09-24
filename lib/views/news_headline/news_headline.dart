@@ -91,7 +91,7 @@ class NewsHeadline extends ConsumerWidget {
                             child: Container(
                               padding: const EdgeInsets.all(15),
                               alignment: Alignment.bottomCenter,
-                              height: height * 0.12,
+                              height: height * 0.13,
                               decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.all(
